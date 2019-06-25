@@ -102,5 +102,15 @@ function handleValidationError(err,body){
    }
 }
 
+router.get('/delete/:id',(req,res)=> {
+    Employee.findOneAndRemove(req.params.id,(err, doc)=>{
+        if(!err){
+            res.redirect('/employee/list');
+        }
+        else{
+            console.log("error in employee delete:" + err);
+        }
+    })
+});
 
 module.exports = router;
