@@ -57,6 +57,17 @@ router.get('/list', (req,res)=> {
     });
 });
 
+router.get('/:id',(req,res)=>{
+    Employee.findById(req.params.id, (err, doc)=> {
+        if(!err){
+            res.render("employee/addOrEdit",{
+                viewTitle: "Update Employee",
+                employee: doc
+                
+            });
+        }
+    })
+});
 function handleValidationError(err,body){
    for(field in err.errors)
    {
@@ -73,4 +84,6 @@ function handleValidationError(err,body){
        }
    }
 }
+
+
 module.exports = router;
